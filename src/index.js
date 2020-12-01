@@ -141,8 +141,12 @@ function main({scratchpads, taxonworks}, treeRootId) {
 			console.log(tid, 'migrated to ', newId);
 		}
 
-		for(const child of children) {
-			await crawlTree(child.tid);
+		try {
+			for(const child of children) {
+				await crawlTree(child.tid);
+			}
+		} catch(e) {
+			console.warn(e);
 		}
 	}
 
